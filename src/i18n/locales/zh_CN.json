@@ -315,7 +315,10 @@
     "hardware_info": "硬件信息",
     "network_info": "网络信息",
     "runtime_info": "运行时信息",
-    "temperature": "温度"
+    "temperature": "温度",
+    "uptime_days": "天",
+    "uptime_hours": "小时",
+    "uptime_minutes": "分钟"
   },
   "login": {
     "title": "登录",
@@ -803,5 +806,9 @@
     "success": "命令执行完成",
     "taskStarted": "任务已启动",
     "title": "远程执行"
-  }
+  },
+  "Theme": "主题",
+  "Color": "颜色",
+  "Language": "语言",
+  "Settings": "设置"
 }

@@ -314,7 +314,10 @@
     "hardware_info": "Hardware Information",
     "network_info": "Network Information",
     "runtime_info": "Runtime Information",
-    "temperature": "Temperature"
+    "temperature": "Temperature",
+    "uptime_days": "days",
+    "uptime_hours": "hours",
+    "uptime_minutes": "minutes"
   },
   "login": {
     "title": "Login",
@@ -806,5 +809,9 @@
     "success": "Command execution completed",
     "taskStarted": "The task has been initiated.",
     "title": "Remote Exec"
-  }
+  },
+  "Theme": "Theme",
+  "Color": "Color",
+  "Language": "Language",
+  "Settings": "Settings"
 }

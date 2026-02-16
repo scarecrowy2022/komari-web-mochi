@@ -315,7 +315,10 @@
     "hardware_info": "ハードウェア情報",
     "network_info": "ネットワーク情報",
     "runtime_info": "ランタイム情報",
-    "temperature": "温度"
+    "temperature": "温度",
+    "uptime_days": "日",
+    "uptime_hours": "時間",
+    "uptime_minutes": "分"
   },
   "login": {
     "title": "ログイン",
@@ -728,7 +731,11 @@
     "pageSize": "1ページあたり {{pageSize}} 台（テーマ設定）",
     "prev": "前のページ",
     "next": "次のページ",
-    "goto": "ページ番号を入力"
+    "goto": "ページ番号を入力",
+    "showing": "{{start}}-{{end}}件を表示",
+    "totalInfo": "全{{total}}件",
+    "first": "最初",
+    "last": "最後"
   },
   "view": {
     "mode": "表示モード"
@@ -799,5 +806,9 @@
     "success": "コマンドの実行が完了しました",
     "taskStarted": "タスクが開始されました",
     "title": "リモート実行"
-  }
+  },
+  "Theme": "テーマ",
+  "Color": "色",
+  "Language": "言語",
+  "Settings": "設定"
 }

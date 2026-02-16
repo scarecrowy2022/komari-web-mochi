@@ -68,3 +68,9 @@ coverage/
 *.sln
 *.sw?
 vite.config.dev.ts
+
+# Local reference repo (for comparison only)
+komari-web/
+
+# Local build artifacts
+komari-theme-v*.zip

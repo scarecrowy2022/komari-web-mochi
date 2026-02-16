@@ -313,7 +313,10 @@
     "hardware_info": "硬體資訊",
     "network_info": "網路資訊",
     "runtime_info": "執行時資訊",
-    "temperature": "溫度"
+    "temperature": "溫度",
+    "uptime_days": "天",
+    "uptime_hours": "小時",
+    "uptime_minutes": "分鐘"
   },
   "login": {
     "title": "登入",
@@ -801,5 +804,9 @@
     "success": "命令執行完成",
     "taskStarted": "任務已啟動",
     "title": "遠程執行"
-  }
+  },
+  "Theme": "主題",
+  "Color": "顏色",
+  "Language": "語言",
+  "Settings": "設定"
 }

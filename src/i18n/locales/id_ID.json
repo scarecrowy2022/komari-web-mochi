@@ -196,7 +196,8 @@
     "type": "Tipe",
     "udp_connections": "UDP",
     "usage": "Penggunaan",
-    "volatility": "Volatilitas"
+    "volatility": "Volatilitas",
+    "connectNulls": "Connect Nulls"
   },
   "close": "Tutup",
   "color": {
@@ -288,7 +289,8 @@
     "update": "Perbarui",
     "update_available": "Versi baru tersedia",
     "updated_successfully": "Berhasil diperbarui",
-    "weight": "Bobot"
+    "weight": "Bobot",
+    "partial": "Partial Online"
   },
   "copy": "Salin",
   "copy_success": "Berhasil disalin!",
@@ -386,7 +388,19 @@
     "totalTraffic": "Total Lalu Lintas",
     "totalUpload": "Total Unggahan",
     "uptime": "Waktu Aktif",
-    "virtualization": "Virtualisasi"
+    "virtualization": "Virtualisasi",
+    "uptime_days": "hari",
+    "uptime_hours": "jam",
+    "uptime_minutes": "menit",
+    "process": "Process",
+    "connections": "Connections",
+    "version": "Version",
+    "resource_usage": "Resource Usage",
+    "trafficLimit": "Traffic Limit",
+    "system_info": "System Information",
+    "hardware_info": "Hardware Information",
+    "network_info": "Network Information",
+    "runtime_info": "Runtime Information"
   },
   "nodes": {
     "empty": "Tidak ada data server"
@@ -716,5 +730,46 @@
     "mode": "Mode Tampilan"
   },
   "warn_https": "Koneksi saat ini bukan HTTPS! Data sensitif Anda berisiko. Amankan koneksi sekarang! Fitur salin mungkin tidak tersedia!",
-  "warn_websocket": "Permintaan RPC2 gagal, periksa koneksi jaringan atau status server!"
+  "warn_websocket": "Permintaan RPC2 gagal, periksa koneksi jaringan atau status server!",
+  "statusBar": {
+    "forceShowTrafficText": "Show up/down traffic in Modern view"
+  },
+  "earthView": {
+    "more": "more...",
+    "totalServers": "{{total}} servers total",
+    "online": "online",
+    "offline": "offline",
+    "allOnline": "All Online",
+    "allOffline": "All Offline"
+  },
+  "Theme": "Tema",
+  "Color": "Warna",
+  "Language": "Bahasa",
+  "Settings": "Pengaturan",
+  "pagination": {
+    "showing": "Showing {{start}}-{{end}} items",
+    "empty": "No nodes available to display",
+    "totalInfo": "Total {{total}} items · {{pageSize}} per page",
+    "first": "First",
+    "prev": "Previous",
+    "next": "Next",
+    "last": "Last"
+  },
+  "Task Name": "Task Name",
+  "Current": "Current",
+  "Avg": "Avg",
+  "Loss": "Loss",
+  "Error loading ping tasks": "Error loading ping tasks",
+  "Task Monitor": "Task Monitor",
+  "Ping Tasks": "Ping Tasks",
+  "Load Metrics": "Load Metrics",
+  "Time Range": "Time Range",
+  "Chart Type": "Chart Type",
+  "Node Statistics": "Node Statistics",
+  "Node Metrics Overview": "Node Metrics Overview",
+  "Show All": "Show All",
+  "Hide All": "Hide All",
+  "Latency Chart": "Latency Chart",
+  "Metrics Chart": "Metrics Chart",
+  "Export": "Export"
 }
