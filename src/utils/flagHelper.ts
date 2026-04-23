@@ -7,13 +7,9 @@ import type { PublicInfo } from "@/contexts/PublicInfoContext";
  * @returns 处理后的旗帜 emoji 或 null
  */
 export const getFlagDisplay = (regionFlag: string, _publicInfo: PublicInfo | null): string => {
-  // 如果不是台湾地区，直接返回原始旗帜
-  if (regionFlag !== '🇹🇼') {
+  
     return regionFlag;
-  }
 
-  // 台湾地区固定显示为中国大陆旗帜
-  return '🇨🇳';
 };
 
 /**
@@ -22,5 +18,5 @@ export const getFlagDisplay = (regionFlag: string, _publicInfo: PublicInfo | nul
  * @returns 是否需要特殊处理
  */
 export const isSpecialRegion = (regionFlag: string): boolean => {
-  return regionFlag === '🇹🇼';
+  return false;
 };
