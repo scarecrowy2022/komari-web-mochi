@@ -506,22 +506,44 @@ const PingChart = ({ uuid }: { uuid: string }) => {
                       </div>
                     </Tips>
                   </div>
-                  <div className="flex gap-2 text-sm text-muted-foreground">
-                    <span>
-                      {task.value !== null
-                        ? `${Number(task.value).toFixed(0)} ms`
-                        : "-"}
-                    </span>
-                    <span>
-                      {`${Number(task.loss).toFixed(1)}%${t("chart.lossRate")}`}
-                    </span>
-                    {typeof task.p99_p50_ratio === "number" && (
-                      <span title="p99/p50">
-                        {task.p99_p50_ratio.toFixed(1)}
-                        {t("chart.volatility")}
-                      </span>
-                    )}
-                  </div>
+                <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-sm text-muted-foreground">
+  <span>
+    {t("chart.latest")}:{" "}
+    <span className="font-mono text-foreground">
+      {task.value !== null ? `${Number(task.value).toFixed(0)} ms` : "-"}
+    </span>
+  </span>
+  {typeof task.avg === "number" && (
+    <span>
+      {t("chart.avg")}:{" "}
+      <span className="font-mono text-foreground">{Math.round(task.avg)} ms</span>
+    </span>
+  )}
+  {typeof task.min === "number" && (
+    <span>
+      {t("chart.min")}:{" "}
+      <span className="font-mono text-foreground">{Math.round(task.min)} ms</span>
+    </span>
+  )}
+  {typeof task.max === "number" && (
+    <span>
+      {t("chart.max")}:{" "}
+      <span className="font-mono text-foreground">{Math.round(task.max)} ms</span>
+    </span>
+  )}
+  {typeof task.loss === "number" && (
+    <span>
+      {t("chart.lossRate")}:{" "}
+      <span className="font-mono text-foreground">{Number(task.loss).toFixed(1)}%</span>
+    </span>
+  )}
+  {typeof task.p99_p50_ratio === "number" && (
+    <span>
+      {t("chart.volatility")}:{" "}
+      <span className="font-mono text-foreground">{task.p99_p50_ratio.toFixed(1)}</span>
+    </span>
+  )}
+</div>
                 </div>
               </div>
             ))}
