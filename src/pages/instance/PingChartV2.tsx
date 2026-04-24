@@ -537,12 +537,7 @@ const PingChart = ({ uuid }: { uuid: string }) => {
       <span className="font-mono text-foreground">{Number(task.loss).toFixed(1)}%</span>
     </span>
   )}
-  {typeof task.p99_p50_ratio === "number" && (
-    <span>
-      {t("chart.volatility")}:{" "}
-      <span className="font-mono text-foreground">{task.p99_p50_ratio.toFixed(1)}</span>
-    </span>
-  )}
+  
 </div>
                 </div>
               </div>
