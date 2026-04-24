@@ -71,7 +71,7 @@ const emojiToCountryName: Record<string, string> = Object.entries(emojiToRegionM
   } else if (emoji === '🇲🇴') {
     acc[emoji] = 'Macau S.A.R., China';
   } else if (emoji === '🇹🇼') {
-    acc[emoji] = 'Taiwan, Province of China';
+    acc[emoji] = 'Taiwan, Republic of China';
   } else {
     acc[emoji] = info.en;
   }
@@ -92,12 +92,12 @@ const NodeEarthView: React.FC<NodeEarthViewProps> = ({ nodes, liveData }) => {
 
   // 大中华区的地区标识
   const greaterChinaRegions = new Set(['🇭🇰', '🇨🇳', '🇲🇴', '🇹🇼']);
-  const greaterChinaNames = new Set(['Hong Kong S.A.R., China', 'China Mainland', 'Macau S.A.R., China', 'Taiwan, Province of China']);
+  const greaterChinaNames = new Set(['Hong Kong S.A.R., China', 'China Mainland', 'Macau S.A.R., China', 'Taiwan, Republic of China']);
   
   // 处理特殊名称映射（将地图数据中的名称映射到我们使用的名称）
   const nameMapping: Record<string, string> = {
     'China': 'China Mainland', // 地图: China -> 我们: China Mainland
-    'Taiwan': 'Taiwan, Province of China',  // 地图: Taiwan -> 我们: Taiwan, Province of China
+    'Taiwan': 'Taiwan, Republic of China',  // 地图: Taiwan -> 我们: Taiwan, Republic of China
     'Hong Kong': 'Hong Kong S.A.R., China',  // 地图: Hong Kong -> 我们: Hong Kong S.A.R., China
     'Macao': 'Macau S.A.R., China',  // 地图: Macao -> 我们: Macau S.A.R., China
     'United States of America': 'United States',  // 地图: United States of America -> 我们: United States
