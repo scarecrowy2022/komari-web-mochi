@@ -24,7 +24,7 @@ export default function InstancePage() {
   const [recent, setRecent] = useState<Record[]>([]);
   const { nodeList } = useNodeList();
   const length = 60 * 5;
-  const [chartView, setChartView] = useState<"load" | "ping">("load");
+  const [chartView, setChartView] = useState<"load" | "ping">("ping");
   const isMobile = useIsMobile();
   // #region 初始数据加载
   const node = nodeList?.find((n) => n.uuid === uuid);
