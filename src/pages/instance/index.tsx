@@ -184,7 +184,7 @@ export default function InstancePage() {
 
         <div className="node-detail-chart-card node-detail-animate" style={{ ["--delay" as any]: "320ms" }}>
           <div className="node-detail-chart-header">
-            <div className="node-detail-section-title">{t("nodeCard.chart")}</div>
+         
             <SegmentedControl.Root
               radius="full"
               value={chartView}
