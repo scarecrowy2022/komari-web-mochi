@@ -519,18 +519,14 @@ const PingChart = ({ uuid }: { uuid: string }) => {
       <span className="font-mono text-foreground">{Math.round(task.avg)} ms</span>
     </span>
   )}
-  {typeof task.min === "number" && (
-    <span>
-      {t("chart.min")}:{" "}
-      <span className="font-mono text-foreground">{Math.round(task.min)} ms</span>
+  {typeof task.min === "number" && typeof task.max === "number" && (
+  <span>
+    范围:{" "}
+    <span className="font-mono text-foreground">
+      {Math.round(task.min)}~{Math.round(task.max)} ms
     </span>
-  )}
-  {typeof task.max === "number" && (
-    <span>
-      {t("chart.max")}:{" "}
-      <span className="font-mono text-foreground">{Math.round(task.max)} ms</span>
-    </span>
-  )}
+  </span>
+)}
   {typeof task.loss === "number" && (
     <span>
       {t("chart.lossRate")}:{" "}
