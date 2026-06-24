@@ -33,10 +33,6 @@ export const AccountProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setError(null);
         try {
     const response = await fetch("/api/me");
-       if (response.status === 401) {
-       window.location.href = "/admin";
-       return;
-    }
     if (!response.ok) {
        throw new Error("Failed to fetch account data");
     }
