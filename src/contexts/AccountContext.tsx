@@ -32,10 +32,14 @@ export const AccountProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setLoading(true);
         setError(null);
         try {
-        const response = await fetch("/api/me");
-        if (!response.ok) {
-            throw new Error("Failed to fetch account data");
-        }
+    const response = await fetch("/api/me");
+       if (response.status === 401) {
+       window.location.href = "/admin";
+       return;
+    }
+    if (!response.ok) {
+       throw new Error("Failed to fetch account data");
+    }
         const data: Account = await response.json();
         setAccount(data);
         } catch (err) {
