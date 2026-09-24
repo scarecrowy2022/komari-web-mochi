@@ -15,6 +15,12 @@
   background: transparent;
 }
 
+/* OpenStreetMap 的标准底图较亮，适当压暗以匹配 Mochi 的深色 Earth 视图。
+ * 只作用于底图瓦片，不影响国家边界、节点标记和 Tooltip。 */
+.earth-map.osm-basemap .leaflet-tile-pane {
+  filter: brightness(0.72) contrast(1.05) saturate(0.7);
+}
+
 /* 区域样式 - 移除发光效果 */
 
 /* 弹出窗口样式 */
@@ -141,7 +147,7 @@
 .map-legend {
   position: absolute;
   bottom: 20px;
-  right: 20px;
+  left: 20px;
   z-index: 1000;
 }
 
@@ -177,7 +183,7 @@
   
   .map-legend {
     bottom: 10px;
-    right: 10px;
+    left: 10px;
   }
 }
 
@@ -203,9 +209,16 @@
   border-bottom: none;
 }
 
-/* 隐藏 Leaflet 默认归属 */
+/* 保留地图服务商要求的可见归属信息 */
 .leaflet-control-attribution {
-  display: none;
+  background: rgba(15, 23, 42, 0.82);
+  color: #cbd5e1;
+  border-radius: 6px 0 0 0;
+  padding: 2px 6px;
+}
+
+.leaflet-control-attribution a {
+  color: #e2e8f0;
 }
 
 /* 加载状态容器 - 保留用于布局 */
