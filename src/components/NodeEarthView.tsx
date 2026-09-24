@@ -78,6 +78,16 @@ const emojiToCountryName: Record<string, string> = Object.entries(emojiToRegionM
   return acc;
 }, {} as Record<string, string>);
 
+// 地图底图：默认使用 OpenStreetMap（无需 API Key）。
+// 设置 VITE_CARTO_API_KEY 后则继续使用原来的 CARTO 深色底图。
+const cartoApiKey = import.meta.env.VITE_CARTO_API_KEY?.trim();
+const mapTileUrl = cartoApiKey
+  ? `https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png?key=${encodeURIComponent(cartoApiKey)}`
+  : "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+const mapAttribution = cartoApiKey
+  ? '&copy; OpenStreetMap contributors, &copy; CARTO'
+  : '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>';
+
 const NodeEarthView: React.FC<NodeEarthViewProps> = ({ nodes, liveData }) => {
   const [t] = useTranslation();
   const [worldData, setWorldData] = useState<FeatureCollection | null>(null);
@@ -87,12 +97,9 @@ const NodeEarthView: React.FC<NodeEarthViewProps> = ({ nodes, liveData }) => {
   
   // 创建一个状态签名来追踪在线节点的变化
   const onlineSignature = useMemo(() => {
-    return (liveData?.online || []).sort().join(',');
+    return (liveData?.online || []).slice().sort().join(',');
   }, [liveData?.online]);
 
-  // 大中华区的地区标识
-  const greaterChinaRegions = new Set(['🇭🇰', '🇨🇳', '🇲🇴', '🇹🇼']);
-  const greaterChinaNames = new Set(['Hong Kong S.A.R., China', 'China Mainland', 'Macau S.A.R., China', 'Taiwan, Republic of China']);
   
   // 处理特殊名称映射（将地图数据中的名称映射到我们使用的名称）
   const nameMapping: Record<string, string> = {
@@ -107,9 +114,6 @@ const NodeEarthView: React.FC<NodeEarthViewProps> = ({ nodes, liveData }) => {
     'Republic of Korea': 'South Korea'  // 备用映射
   };
   
-  const hasGreaterChina = useMemo(() => {
-    return nodes.some(node => greaterChinaRegions.has(node.region));
-  }, [nodes, greaterChinaRegions]);
   
   const fixAntimeridian = useCallback((geojson: any) => {
     if (geojson.type === 'FeatureCollection') {
@@ -172,42 +176,27 @@ const NodeEarthView: React.FC<NodeEarthViewProps> = ({ nodes, liveData }) => {
   }, [nodes]);
   
   const activeRegions = useMemo(() => {
-    const regions = new Set<string>(nodesByRegion.keys());
-    if (hasGreaterChina) {
-      greaterChinaNames.forEach(name => regions.add(name));
-    }
-    return regions;
-  }, [nodesByRegion, hasGreaterChina, greaterChinaNames]);
+    return new Set<string>(nodesByRegion.keys());
+  }, [nodesByRegion]);
   
-  // 实时判断节点状态
+  // 实时判断节点状态：每个地区独立统计，不再把中国大陆、台湾、香港、澳门合并。
   const getRegionStatus = useCallback((countryName: string) => {
-    const getStatusFromNodes = (nodeList: NodeBasicInfo[]) => {
-      if (nodeList.length === 0) return 'inactive';
-      const onlineSet = new Set(liveData?.online || []);
-      let onlineCount = 0;
-      for (const node of nodeList) {
-        // 直接使用 liveData.online 判断节点是否在线
-        if (onlineSet.has(node.uuid)) {
-          onlineCount++;
-        }
-      }
-      if (onlineCount === 0) return 'offline';
-      if (onlineCount === nodeList.length) return 'online';
-      return 'partial';
-    };
+    const regionNodes = nodesByRegion.get(countryName) || [];
+    if (regionNodes.length === 0) return 'inactive';
 
-    if (hasGreaterChina && greaterChinaNames.has(countryName)) {
-      const allGreaterChinaNodes: NodeBasicInfo[] = [];
-      nodes.forEach(node => {
-        if (greaterChinaRegions.has(node.region)) {
-          allGreaterChinaNodes.push(node);
-        }
-      });
-      return getStatusFromNodes(allGreaterChinaNodes);
+    const onlineSet = new Set(liveData?.online || []);
+    let onlineCount = 0;
+
+    for (const node of regionNodes) {
+      if (onlineSet.has(node.uuid)) {
+        onlineCount++;
+      }
     }
-    
-    return getStatusFromNodes(nodesByRegion.get(countryName) || []);
-  }, [hasGreaterChina, greaterChinaNames, greaterChinaRegions, nodes, nodesByRegion, liveData?.online]);
+
+    if (onlineCount === 0) return 'offline';
+    if (onlineCount === regionNodes.length) return 'online';
+    return 'partial';
+  }, [nodesByRegion, liveData?.online]);
 
   const geoJsonStyle = useCallback((feature: Feature | undefined) => {
     if (!feature || !feature.properties) {
@@ -323,9 +312,9 @@ const NodeEarthView: React.FC<NodeEarthViewProps> = ({ nodes, liveData }) => {
 
   return (
     <div className="earth-view-container">
-      <MapContainer center={[20, 0] as LatLngExpression} zoom={2} className="earth-map" scrollWheelZoom={true} doubleClickZoom={true} dragging={true} attributionControl={false} worldCopyJump={false} maxBoundsViscosity={1.0}>
+      <MapContainer center={[20, 0] as LatLngExpression} zoom={2} className={`earth-map ${cartoApiKey ? "carto-basemap" : "osm-basemap"}`} scrollWheelZoom={true} doubleClickZoom={true} dragging={true} attributionControl={true} worldCopyJump={false} maxBoundsViscosity={1.0}>
         <MapBounds />
-        <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png" attribution="" />
+        <TileLayer url={mapTileUrl} attribution={mapAttribution} />
         {worldData && <GeoJSON 
           key={`geojson-${onlineSignature}`}
           data={worldData} 
