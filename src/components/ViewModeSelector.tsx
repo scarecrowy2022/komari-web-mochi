@@ -77,8 +77,8 @@ const ViewModeSelector: React.FC<ViewModeSelectorProps> = ({
         <IconButton 
           variant="soft" 
           size="2"
-          className={`view-mode-trigger gap-2 px-3 ${isMobile ? 'w-full' : ''}`}
-          style={{ minWidth: isMobile ? "100%" : "140px" }}
+          className="view-mode-trigger gap-2 px-3"
+          style={{ minWidth: "140px" }}
         >
           <Flex align="center" justify="center" gap="2" className="w-full">
             <Text size="2" weight="medium">
