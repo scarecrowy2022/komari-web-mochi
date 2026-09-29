@@ -159,8 +159,8 @@
 /* Mobile size adjustments only - no color changes */
 @media (max-width: 640px) {
   .view-mode-trigger {
-    width: 100%;
-    min-width: 100%;
+    /* width: 100%;
+    min-width: 100%; */
     font-size: 0.875rem;
   }
   
